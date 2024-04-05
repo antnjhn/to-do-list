@@ -3,15 +3,16 @@
 int main()
     {    
         FILE *fp;
-        int k,i,z=1;
+        int k,i,a,z=1;
         char buffer[100];
         char task[100];
-        char a,opt;
+        char opt;
         do{
-        printf("Do you want to write new tasks or display the remaining tasks??(W/D):");
-        scanf(" %c",&a);
+            printf("(1)-Display\n(2)-New tasks\n");
+        printf("Enter your choice??:");
+        scanf("%d",&a);
         getchar();
-        if (a == 'W' || a == 'w')
+        if (a == 2)
             {
              //writing to the file
             if (fp == NULL)
@@ -37,7 +38,7 @@ int main()
                 }
             fclose(fp);
             }
-        else if (a=='D' || a=='d')
+        else if (a==1)
             {
             //Reading the file
             fp = fopen("to do list.txt","r");//to open the file and read
