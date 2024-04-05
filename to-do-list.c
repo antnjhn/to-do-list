@@ -1,31 +1,58 @@
 #include<stdio.h>
 int main()
-    {   
-        //writing to the file
+    {    
         FILE *fp;
         int k,i;
         char buffer[100];
         char task[100];
-        fp=fopen("to do list.txt","w");
-        printf("Enter how many tasks to add to the to do list?:");
-        scanf("%d",&k);
-        for(i=0;i<k;i++)
+        char a;
+        printf("Do you want to write new tasks or display the remaining tasks??(W/D):");
+        scanf("%c",&a);
+        if (a == 'W')
             {
-                printf("Enter today's task:");
-                scanf("%s",&task);
-                fprintf(fp,"%s",task);
+             //writing to the file
+            if (fp == NULL)
+                {
+                    printf("Error opening the file ");
+                    return 1;
+                }
+            fp=fopen("to do list.txt","w");
+            printf("Enter how many tasks to add to the to do list?:");
+            scanf("%d",&k);
+            //consume the newline character left in the input buffer
+            while (getchar() !='\n');
+            for(i=0;i<k;i++)
+                {
+                    printf("Enter today's task:");
+                    fgets(task, sizeof(task), stdin);
+                    //Remove new line character from the task string
+                    if (task[strlen(task) -1 ] == '\n') /*this part of the code checks if the end of the string(task )is a new line character or not*/
+                        {
+                            task[strlen(task) -1] = '\0';/*this line of code replaces the newline character(\n) from the end of the character with a null terminator*/
+                        }
+                    fprintf(fp,"%s\n",task);
+                }
+            fclose(fp);
             }
-        fclose(fp);
-        //Reading the file
-        fp = fopen("to do list.txt","r");//to open the file and read
-        if (fp == NULL)
+        else if (a=='D')
             {
-                printf("Error reading this file\n");
-                return 1;
+            //Reading the file
+            fp = fopen("to do list.txt","r");//to open the file and read
+            if (fp == NULL)
+                {
+                    printf("Error reading this file\n");
+                    return 1;
+                }
+            printf("Tasks:\n");
+            while(fgets(buffer,sizeof(buffer),fp) != NULL)
+                {
+                    printf("%s",buffer);
+                }
+            fclose(fp);
             }
-        while(fgets(buffer,sizeof(buffer),fp) != NULL)
+        else
             {
-                printf("%s",buffer);
+                printf("Check what you've written\n");
             }
-        fclose(fp);
+        return 0;
     }
