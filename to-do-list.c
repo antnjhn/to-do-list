@@ -1,13 +1,16 @@
 #include<stdio.h>
+#include<string.h>
 int main()
     {    
         FILE *fp;
         int k,i;
         char buffer[100];
         char task[100];
-        char a;
+        char a,opt;
+        do{
         printf("Do you want to write new tasks or display the remaining tasks??(W/D):");
-        scanf("%c",&a);
+        scanf(" %c",&a);
+        getchar();
         if (a == 'W')
             {
              //writing to the file
@@ -54,5 +57,9 @@ int main()
             {
                 printf("Check what you've written\n");
             }
+        printf("Do you want to continue?(Y/N):");
+        scanf("%c",&opt);
+        getchar();
+        }while(opt =='Y' || opt == 'y');
         return 0;
     }
