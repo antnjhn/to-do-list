@@ -1,2 +1,2 @@
-# to do litst
+# to do list
  
