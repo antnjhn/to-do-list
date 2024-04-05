@@ -3,7 +3,7 @@
 int main()
     {    
         FILE *fp;
-        int k,i;
+        int k,i,z=1;
         char buffer[100];
         char task[100];
         char a,opt;
@@ -11,7 +11,7 @@ int main()
         printf("Do you want to write new tasks or display the remaining tasks??(W/D):");
         scanf(" %c",&a);
         getchar();
-        if (a == 'W')
+        if (a == 'W' || a == 'w')
             {
              //writing to the file
             if (fp == NULL)
@@ -19,7 +19,7 @@ int main()
                     printf("Error opening the file ");
                     return 1;
                 }
-            fp=fopen("to do list.txt","w");
+            fp=fopen("to do list.txt","a");
             printf("Enter how many tasks to add to the to do list?:");
             scanf("%d",&k);
             //consume the newline character left in the input buffer
@@ -37,7 +37,7 @@ int main()
                 }
             fclose(fp);
             }
-        else if (a=='D')
+        else if (a=='D' || a=='d')
             {
             //Reading the file
             fp = fopen("to do list.txt","r");//to open the file and read
@@ -49,7 +49,8 @@ int main()
             printf("Tasks:\n");
             while(fgets(buffer,sizeof(buffer),fp) != NULL)
                 {
-                    printf("%s",buffer);
+                    printf("(%d)-%s",z,buffer);
+                    z++;
                 }
             fclose(fp);
             }
