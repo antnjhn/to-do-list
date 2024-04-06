@@ -48,7 +48,7 @@ int main()
                     return 1;
                 }
             printf("Tasks:\n");
-            while(fgets(buffer,sizeof(buffer),fp) != NULL)
+            while(fgets(buffer,sizeof(buffer),fp) != NULL)//this is to get the file pointer to prinnt the tasks inputed
                 {
                     printf("(%d)-%s",z,buffer);
                     z++;
