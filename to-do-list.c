@@ -21,7 +21,7 @@ int main()
                     return 1;
                 }
             fp=fopen("to do list.txt","a");
-            printf("Enter how many tasks to add to the to do list?:");
+            printf("Enter how many tasks to add to the to do list?:");//to iterate  the no of times to be written in the file
             scanf("%d",&k);
             //consume the newline character left in the input buffer
             while (getchar() !='\n');
